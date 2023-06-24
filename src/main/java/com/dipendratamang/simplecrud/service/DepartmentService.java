@@ -1,6 +1,8 @@
 package com.dipendratamang.simplecrud.service;
 
 import com.dipendratamang.simplecrud.entity.Department;
+import com.dipendratamang.simplecrud.error.DepartmentNotFoundException;
+
 import java.util.List;
 
 public interface DepartmentService {
@@ -8,7 +10,7 @@ public interface DepartmentService {
 
     public List<Department> fetchDepartmentList();
 
-    public Department fetchDepartmentById(Long departmentId);
+    public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
     public void deleteDepartmentById(Long departmentId);
 

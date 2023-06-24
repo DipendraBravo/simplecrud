@@ -1,6 +1,7 @@
 package com.dipendratamang.simplecrud.Controller;
 
 import com.dipendratamang.simplecrud.entity.Department;
+import com.dipendratamang.simplecrud.error.DepartmentNotFoundException;
 import com.dipendratamang.simplecrud.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId){
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         return departmentService.fetchDepartmentById(departmentId);
     }
 
