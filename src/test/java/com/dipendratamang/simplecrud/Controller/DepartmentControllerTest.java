@@ -1,6 +1,7 @@
 package com.dipendratamang.simplecrud.Controller;
 
 import com.dipendratamang.simplecrud.entity.Department;
+import com.dipendratamang.simplecrud.error.DepartmentNotFoundException;
 import com.dipendratamang.simplecrud.service.DepartmentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,11 @@ class DepartmentControllerTest {
     }
 
     @Test
-    void fetchDepartmentById() {
+    void fetchDepartmentById() throws Exception {
+        Mockito.when(departmentService.fetchDepartmentById(1L)).thenReturn(department);
+        mockMvc.perform(get("/departments/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.departmentName").value(department.getDepartmentName()));
     }
 }
